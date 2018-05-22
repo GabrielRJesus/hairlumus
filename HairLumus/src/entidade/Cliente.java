@@ -1,6 +1,11 @@
 package entidade;
 
+import DAO.ClienteDAO;
+import exception.DAOException;
+import exception.EntidadeException;
+import java.sql.Connection;
 import java.util.Date;
+import java.util.List;
 
 public class Cliente extends Pessoa{
     private String cpf;
@@ -55,5 +60,43 @@ public class Cliente extends Pessoa{
         this.sexo = sexo;
     }
     
+    public int insert(Connection con) throws EntidadeException{
+        try{
+            return new ClienteDAO().insert(this, con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
     
+    public int update(Connection con) throws EntidadeException{
+        try{
+            return new ClienteDAO().update(this, con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
+    
+    public int delete(Connection con) throws EntidadeException{
+        try{
+            return new ClienteDAO().delete(this, con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
+    
+    public Cliente select(Connection con) throws EntidadeException{
+        try{
+            return new ClienteDAO().select(this, con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
+    
+    public List<Cliente>listacli(Connection con) throws EntidadeException{
+        try{
+            return new ClienteDAO().lista(this, con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
 }

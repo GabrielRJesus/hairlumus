@@ -1,5 +1,11 @@
 package entidade;
 
+import DAO.PessoaDAO;
+import exception.DAOException;
+import exception.EntidadeException;
+import java.sql.Connection;
+import java.util.List;
+
 public class Pessoa {
     private Integer codigo;
     private String nome;
@@ -58,5 +64,44 @@ public class Pessoa {
         this.celular = celular;
     }
     
+    public int insert(Connection con) throws EntidadeException{
+        try{
+            return new PessoaDAO().insert(this, con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
+    
+    public int update(Connection con) throws EntidadeException{
+        try{
+            return new PessoaDAO().update(this, con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
+    
+    public int delete(Connection con) throws EntidadeException{
+        try{
+            return new PessoaDAO().delete(this, con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
+    
+    public Pessoa select(Connection con) throws EntidadeException{
+        try{
+            return new PessoaDAO().select(this, con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
+    
+    public List<Pessoa> lista(Connection con) throws EntidadeException{
+        try{
+            return new PessoaDAO().listaPessoa(this, con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
     
 }

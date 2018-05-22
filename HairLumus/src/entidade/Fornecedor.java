@@ -1,5 +1,11 @@
 package entidade;
 
+import DAO.FornecedorDAO;
+import exception.DAOException;
+import exception.EntidadeException;
+import java.sql.Connection;
+import java.util.List;
+
 public class Fornecedor extends Pessoa{
     private String cnpj;
     private String ie;
@@ -36,6 +42,44 @@ public class Fornecedor extends Pessoa{
         this.nomeResp = nomeResp;
     }
     
+    public int insert(Connection con) throws EntidadeException{
+        try{
+            return new FornecedorDAO().insert(this, con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
     
+    public int update(Connection con) throws EntidadeException{
+        try{
+            return new FornecedorDAO().update(this, con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
+    
+    public int delete(Connection con) throws EntidadeException{
+        try{
+            return new FornecedorDAO().delete(this, con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
+    
+    public Fornecedor select(Connection con) throws EntidadeException{
+        try{
+            return new FornecedorDAO().select(this, con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
+    
+    public List<Fornecedor>listafor(Connection con) throws EntidadeException{
+        try{
+            return new FornecedorDAO().lista(this, con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
     
 }

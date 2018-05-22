@@ -1,6 +1,11 @@
 package entidade;
 
+import DAO.FuncionarioDAO;
+import exception.DAOException;
+import exception.EntidadeException;
+import java.sql.Connection;
 import java.util.Date;
+import java.util.List;
 
 public class Funcionario extends Cliente{
     private String login;
@@ -66,5 +71,43 @@ public class Funcionario extends Cliente{
             return CI.calculaSalarioComImposto(this);
     }
     
+    public int insertf(Connection con) throws EntidadeException{
+        try{
+            return new FuncionarioDAO().insert(this, con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
     
+    public int updatef(Connection con) throws EntidadeException{
+        try{
+            return new FuncionarioDAO().update(this, con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
+    
+    public int deletef(Connection con) throws EntidadeException{
+        try{
+            return new FuncionarioDAO().delete(this, con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
+    
+    public Funcionario selectf(Connection con) throws EntidadeException{
+        try{
+            return new FuncionarioDAO().select(this, con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
+    
+    public List<Funcionario>listafun(Connection con) throws EntidadeException{
+        try{
+            return new FuncionarioDAO().lista(this, con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
 }
