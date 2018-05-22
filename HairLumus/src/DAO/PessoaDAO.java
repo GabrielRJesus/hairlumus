@@ -12,20 +12,12 @@ import java.util.List;
 public class PessoaDAO implements GenericDAO<Pessoa>{
     //insert
     private String insertp = "insert into pessoa(pes_nome, pes_endereco,pes_telefone,pes_celular) values(?,?,?,?)";
-    private String insertfo= "insert into fornecedor(for_cnpj, for_ie, for_nomeContato, pes_codigo) values(?,?,?,?)";
-    private String insertfu= "insert into funcionario(fun_login, fun_senha, fun_cargo, fun_salario, cli_cpf, pes_codigo) values(?,?,?,?,?,?)";
     //update
     private String updatep = "update pessoa set pes_nome = ?, pes_endereco =?, pes_telefone = ?, pes_celular = ? where pes_codigo = ?";
-    private String updatefo= "update fornecedor set for_ie = ?, for_nomeContato= ? where pes_codigo = ? and for_cnpj = ?";
-    private String updatefu= "update funcionario set fun_login = ?, fun_senha = ?, fun_cargo = ?, fun_salario = ? where pes_codigo = ? and cli_cpf = ?";
     //delete
     private String deletep = "delete from pessoa where pes_codigo = ?";
-    private String deletefo= "delete from fornecedor where pes_codigo = ? and for_cnpj = ?";
-    private String deletefu= "delete from funcionario where pes_codigo = ? and cli_cpf = ?";
     //select
     private String selectp = "select * from pessoa";
-    private String selectfo= "select * from pessoa p inner join fornecedor f on p.pes_codigo = f.pes_codigo";
-    private String selectfu= "select * from pessoa p inner join cliente c on p.pes_codigo = c.pes_codigo inner join funcionario f on p.pes_codigo = f.pes_codigo and c.cli_codigo = f.cli_codigo";
 
     @Override
     public int insert(Pessoa obj, Connection con) throws DAOException {

@@ -57,6 +57,10 @@ public class Funcionario extends Cliente{
                 throw new RuntimeException("Cargo não encontrado :/");
         }
     }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
     
     public double calcularSalarioComImposto() {
             return CI.calculaSalarioComImposto(this);

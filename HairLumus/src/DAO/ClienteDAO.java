@@ -115,13 +115,12 @@ public class ClienteDAO implements GenericDAO<Cliente>{
                     ps.setString(++cont, obj.getNome());
                 rs = ps.executeQuery();
                 if(rs.next()){
-                    Pessoa p = new Pessoa();
                     Cliente c = new Cliente();
-                    p.setCodigo(rs.getInt("pes_codigo"));
-                    p.setNome(rs.getString("pes_nome"));
-                    p.setEndereco(rs.getString("pes_endereco"));
-                    p.setTelefone(rs.getString("pes_telefone"));
-                    p.setCelular(rs.getString("pes_celular"));
+                    c.setCodigo(rs.getInt("pes_codigo"));
+                    c.setNome(rs.getString("pes_nome"));
+                    c.setEndereco(rs.getString("pes_endereco"));
+                    c.setTelefone(rs.getString("pes_telefone"));
+                    c.setCelular(rs.getString("pes_celular"));
                     c.setCpf(rs.getString("cli_cpf"));
                     c.setRg(rs.getString("cli_rg"));
                     c.setDataNasc(rs.getDate("cli_dtNasc"));
@@ -175,13 +174,12 @@ public class ClienteDAO implements GenericDAO<Cliente>{
                     ps.setString(++cont, obj.getNome());
                 rs = ps.executeQuery();
                 while(rs.next()){
-                    Pessoa p = new Pessoa();
                     Cliente c = new Cliente();
-                    p.setCodigo(rs.getInt("pes_codigo"));
-                    p.setNome(rs.getString("pes_nome"));
-                    p.setEndereco(rs.getString("pes_endereco"));
-                    p.setTelefone(rs.getString("pes_telefone"));
-                    p.setCelular(rs.getString("pes_celular"));
+                    c.setCodigo(rs.getInt("pes_codigo"));
+                    c.setNome(rs.getString("pes_nome"));
+                    c.setEndereco(rs.getString("pes_endereco"));
+                    c.setTelefone(rs.getString("pes_telefone"));
+                    c.setCelular(rs.getString("pes_celular"));
                     c.setCpf(rs.getString("cli_cpf"));
                     c.setRg(rs.getString("cli_rg"));
                     c.setDataNasc(rs.getDate("cli_dtNasc"));
