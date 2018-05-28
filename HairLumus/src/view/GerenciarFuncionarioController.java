@@ -5,6 +5,7 @@
  */
 package view;
 
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import control.PessoaControl;
 import exception.ControlException;
@@ -29,12 +30,8 @@ import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-/**
- * FXML Controller class
- *
- * @author Usuario
- */
-public class GerenciarClienteController implements Initializable {
+
+public class GerenciarFuncionarioController implements Initializable {
 
     @FXML
     private DatePicker dpDtNasc;
@@ -66,8 +63,18 @@ public class GerenciarClienteController implements Initializable {
     private JFXTextField tvTelefone;
     @FXML
     private JFXTextField tvCelular;
+    @FXML
+    private JFXTextField tvLogin;
+    @FXML
+    private JFXPasswordField tvSenha;
+    @FXML
+    private JFXTextField tvCargo;
+    @FXML
+    private JFXTextField tvSalario;
 
-    
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         inicializa(true);
@@ -85,9 +92,11 @@ public class GerenciarClienteController implements Initializable {
         Date data = java.sql.Date.valueOf(dpDtNasc.getValue());
         int codigo = Integer.parseInt(tvCodigo.getText().toString());
         try{
-            int n = pc.gravarCliente(codigo, tvNome.getText().toString(), tvEndereco.getText().toString(), 
+            int n = pc.gravarFuncionario(codigo, tvNome.getText().toString(), tvEndereco.getText().toString(), 
                                      tvTelefone.getText().toString(), tvCelular.getText().toString(), 
-                                     tvCPF.getText().toString(), tvRG.getText().toString(), data, cbSexo.getValue());
+                                     tvCPF.getText().toString(), tvRG.getText().toString(), data, cbSexo.getValue(),
+                                     tvLogin.getText().toString(), tvSenha.getText().toString(), tvCargo.getText().toString(),
+                                     Double.parseDouble(tvSalario.getText().toString()));
             if(n>0){
                 System.out.println("Inserido com Sucesso");
                 clkCancelar(event);
@@ -110,11 +119,7 @@ public class GerenciarClienteController implements Initializable {
     }
 
     @FXML
-    private void clkExcluir(ActionEvent event) {
-    }
-
-    @FXML
-    private void clkSair(ActionEvent event) throws IOException {
+    private void clkExcluir(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/MenuPrincipal.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) btSair.getScene().getWindow();
@@ -124,6 +129,10 @@ public class GerenciarClienteController implements Initializable {
         stage.setResizable(false);
         stage.showAndWait();
         stage.close();
+    }
+
+    @FXML
+    private void clkSair(ActionEvent event) {
     }
     
     public void inicializa(boolean estado){
@@ -136,6 +145,10 @@ public class GerenciarClienteController implements Initializable {
         btExcluir.setDisable(estado);
         btGravar.setDisable(estado);
         btCancelar.setDisable(estado);
+        tvLogin.setDisable(estado);
+        tvSenha.setDisable(estado);
+        tvCargo.setDisable(estado);
+        tvSalario.setDisable(estado);
     }
     
     public void carregacb(){
@@ -154,6 +167,10 @@ public class GerenciarClienteController implements Initializable {
         tvCPF.setText("");
         tvRG.setText("");
         dpDtNasc.setValue(LocalDate.now());
+        tvLogin.setText("");
+        tvSenha.setText("");
+        tvCargo.setText("");
+        tvSalario.setText("");
     }
     
 }

@@ -1,14 +1,18 @@
 package view;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Menu;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 public class MenuPrincipalController implements Initializable {
@@ -41,7 +45,16 @@ public class MenuPrincipalController implements Initializable {
     }    
 
     @FXML
-    private void clkCliente(ActionEvent event) {
+    private void clkCliente(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/GerenciarCliente.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) menuBar.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Gerenciar Cliente");
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setResizable(false);
+        stage.showAndWait();
+        stage.close();
     }
 
     @FXML
@@ -49,7 +62,16 @@ public class MenuPrincipalController implements Initializable {
     }
 
     @FXML
-    private void clkFuncionario(ActionEvent event) {
+    private void clkFuncionario(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/GerenciarFuncionario.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) menuBar.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Gerenciar Funcionario");
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setResizable(false);
+        stage.showAndWait();
+        stage.close();
     }
 
     @FXML
