@@ -15,6 +15,12 @@ public class Funcionario extends Cliente{
     private CalculaImposto CI;
 
     public Funcionario() {
+        CI = new CalculaImposto() {
+            @Override
+            public double calculaSalarioComImposto(Funcionario umFuncionario) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        };
         
     }
 
@@ -68,7 +74,8 @@ public class Funcionario extends Cliente{
     }
     
     public double calcularSalarioComImposto() {
-            return CI.calculaSalarioComImposto(this);
+        return CI.calculaSalarioComImposto(this);
+            
     }
     
     public int insertf(Connection con) throws EntidadeException{
