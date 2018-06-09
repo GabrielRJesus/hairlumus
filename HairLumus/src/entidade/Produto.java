@@ -1,5 +1,11 @@
 package entidade;
 
+import DAO.ProdutoDAO;
+import exception.DAOException;
+import exception.EntidadeException;
+import java.sql.Connection;
+import java.util.List;
+
 public class Produto {
     private Integer codigo;
     private String descricao;
@@ -60,5 +66,20 @@ public class Produto {
         this.marca = marca;
     }
     
+    public List<Produto> lista(Connection con) throws EntidadeException{
+        try{
+            return new ProdutoDAO().lista(this,con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
+    
+    public int insert(Connection con) throws EntidadeException{
+        try{
+            return new ProdutoDAO().insert(this,con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
     
 }

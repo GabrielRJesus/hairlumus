@@ -1,14 +1,18 @@
 package entidade;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Venda {
     private Integer codigo;
     private double valor;
     private Date data;
     private Cliente cliente;
+    List<ItensVenda> lista;
 
     public Venda() {
+        lista = new ArrayList<>();
         cliente = new Cliente();
     }
 
@@ -43,6 +47,13 @@ public class Venda {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    
+
+    public List<ItensVenda> getLista() {
+        return lista;
+    }
+
+    public void setLista(List<ItensVenda> lista) {
+        this.lista = lista;
+    }
     
 }
