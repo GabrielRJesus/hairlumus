@@ -90,7 +90,9 @@ public class GerenciarFuncionarioController implements Initializable {
     private void clkGravar(ActionEvent event) {
         PessoaControl pc = new PessoaControl();
         Date data = java.sql.Date.valueOf(dpDtNasc.getValue());
-        int codigo = Integer.parseInt(tvCodigo.getText().toString());
+        int codigo = 0;
+        if(tvCodigo.getText().toString()!=null && !tvCodigo.getText().toString().isEmpty())
+            codigo = Integer.parseInt(tvCodigo.getText().toString());
         try{
             int n = pc.gravarFuncionario(codigo, tvNome.getText().toString(), tvEndereco.getText().toString(), 
                                      tvTelefone.getText().toString(), tvCelular.getText().toString(), 

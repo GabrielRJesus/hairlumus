@@ -43,7 +43,7 @@ public class PessoaControl {
     public int gravarCliente(Integer codigo, String nome, String endereco, String telefone, String celular ,String cpf, String Rg, Date dtNasc, String sexo) throws ControlException{
         Cliente c = new Cliente();
         int chave,n;
-        if(codigo==null || codigo!=0){
+        if(codigo==null || codigo==0){
             chave = gravarPessoa(codigo, nome, endereco, telefone, celular);
             c.setCodigo(chave);
         }
@@ -83,6 +83,7 @@ public class PessoaControl {
         if(salario>0)
             f.setSalario(salario, cargo);
         f.setCodigo(n);
+        f.setCpf(cpf);
         
         try{
             return f.insert(con);
