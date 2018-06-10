@@ -6,8 +6,6 @@ import entidade.Pessoa;
 import entidade.Produto;
 import exception.EntidadeException;
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
 import sql.Banco;
 
 public abstract class TemplateMethod {
@@ -17,12 +15,12 @@ public abstract class TemplateMethod {
     
     final void realizarFuncao(){
         String nome = null;
-        List<Produto> listaprod = new ArrayList<>();
+        Produto prod = new Produto();
         int qtdparcelas = 0, qtd = 0;
         double soma = 0;
         int chave = 0;
         selecionarPessoa(nome);
-        inserirProdutos(listaprod, qtd);
+        inserirProdutos(prod, qtd);
     }
     
     Pessoa selecionarPessoa(String nome){
@@ -50,6 +48,6 @@ public abstract class TemplateMethod {
         }
         return p;
     }
-    abstract void inserirProdutos(List<Produto> listaprod, int qtd);
+    abstract void inserirProdutos(Produto prod, int qtd);
     
 }

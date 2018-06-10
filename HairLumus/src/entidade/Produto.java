@@ -74,6 +74,14 @@ public class Produto {
         }
     }
     
+    public Produto select(Connection con) throws EntidadeException{
+        try{
+            return new ProdutoDAO().select(this,con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
+    
     public int insert(Connection con) throws EntidadeException{
         try{
             return new ProdutoDAO().insert(this,con);

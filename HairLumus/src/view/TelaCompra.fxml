@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="548.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TelaCompraController">
+   <children>
+      <Label layoutX="115.0" layoutY="14.0" text="Realizar Compra">
+         <font>
+            <Font name="Arial Black" size="38.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtCodigo" labelFloat="true" layoutX="42.0" layoutY="85.0" prefHeight="25.0" prefWidth="108.0" promptText="Código:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXTextField>
+      <JFXComboBox fx:id="cbFornecedor" labelFloat="true" layoutX="42.0" layoutY="132.0" prefHeight="25.0" prefWidth="230.0" promptText="Fornecedor" />
+      <JFXTextField fx:id="txtProduto" labelFloat="true" layoutX="42.0" layoutY="201.0" prefHeight="29.0" prefWidth="208.0" promptText="Produto">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton fx:id="btPesquisa" layoutX="258.0" layoutY="202.0" onAction="#clkPesquisa" style="-fx-border-color: #000;" text="Q" />
+      <JFXTextField fx:id="txtQtde" labelFloat="true" layoutX="307.0" layoutY="203.0" prefHeight="25.0" prefWidth="100.0" promptText="Quantidade">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton fx:id="btInsere" layoutX="422.0" layoutY="204.0" onAction="#clkInsere" style="-fx-border-color: #000;" text="+" />
+      <JFXButton fx:id="btRetira" layoutX="458.0" layoutY="204.0" onAction="#clkRetira" prefHeight="27.0" prefWidth="27.0" style="-fx-border-color: #000;" text="-" />
+      <TableView fx:id="tabProduto" layoutX="42.0" layoutY="243.0" prefHeight="200.0" prefWidth="449.0">
+        <columns>
+          <TableColumn fx:id="colProduto" prefWidth="193.0" text="Produto" />
+          <TableColumn fx:id="colQtde" prefWidth="105.0" text="Quantidade" />
+            <TableColumn fx:id="colValorUnit" prefWidth="148.0" text="Valor Unitario" />
+        </columns>
+      </TableView>
+      <JFXButton fx:id="btGravar" layoutX="42.0" layoutY="518.0" onAction="#clkGravar" prefHeight="27.0" prefWidth="72.0" style="-fx-border-color: #000;" text="Gravar" />
+      <JFXTextField fx:id="txtTotal" labelFloat="true" layoutX="386.0" layoutY="457.0" prefHeight="25.0" prefWidth="100.0" promptText="Total R$:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton fx:id="btSair" layoutX="422.0" layoutY="518.0" onAction="#clkSair" prefHeight="27.0" prefWidth="72.0" style="-fx-border-color: #000;" text="Sair" />
+   </children>
+</AnchorPane>

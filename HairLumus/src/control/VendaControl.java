@@ -29,32 +29,13 @@ public class VendaControl extends TemplateMethod{
             throw new ControlException(ex.getMessage());
         }
     }
-
-    public List<Produto> preenchelistaprodutos() throws ControlException {
-        List<Produto> listaprodutos = new ArrayList<>();
-        Produto p = new Produto();
-        try {
-            List<Produto> listap = p.lista(con);
-            if (listap != null) {
-                for (int i = 0; i < listap.size(); i++) {
-                    listaprodutos.add(listap.get(i));
-                }
-                return listaprodutos;
-            }
-        } catch (EntidadeException ex) {
-            throw new ControlException(ex.getMessage());
-        }
-        return listaprodutos;
-    }
     
     @Override
-    void inserirProdutos(List<Produto> listaprod, int qtd) {
-        for (int i = 0; i < listaprod.size(); i++) {
+    void inserirProdutos(Produto prod, int qtd) {
             ItensVenda iv = new ItensVenda();
-            iv.setProduto(listaprod.get(i));
+            iv.setProduto(prod);
             iv.setQtd(qtd);
             listaitens.add(iv);
-        }
     }
     
     public int gravaVenda(int codigo, double valor, Date data, Cliente c, Pessoa p){

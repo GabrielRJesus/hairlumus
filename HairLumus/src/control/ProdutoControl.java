@@ -95,7 +95,7 @@ public class ProdutoControl {
         }
     }
     
-    public List<Produto> buscar(String codigo, String descr) throws ControlException{
+    public Produto buscar(String codigo, String descr) throws ControlException{
         if(codigo!=null && !codigo.isEmpty()){
             try{
                 int cod = Integer.parseInt(codigo);
@@ -107,9 +107,7 @@ public class ProdutoControl {
             Produto p = new Produto();
             p.setCodigo(Integer.parseInt(codigo));
             p.setDescricao(descr);
-            List<Produto> listapt = new ArrayList<>();
-            listapt = p.lista(con);
-            return listapt;
+            return  p.select(con);
         } catch (EntidadeException ex) {
              throw new ControlException(ex.getMessage());
         }

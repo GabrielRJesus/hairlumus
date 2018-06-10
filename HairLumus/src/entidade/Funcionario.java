@@ -15,13 +15,6 @@ public class Funcionario extends Cliente{
     private CalculaImposto CI;
 
     public Funcionario() {
-        CI = new CalculaImposto() {
-            @Override
-            public double calculaSalarioComImposto(Funcionario umFuncionario) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        };
-        
     }
 
     public Funcionario(String cpf, String rg, Date dataNasc, String sexo, Integer codigo, String nome, String endereco, String telefone, String celular) {

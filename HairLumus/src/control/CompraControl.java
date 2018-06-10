@@ -5,7 +5,6 @@ import entidade.Compra;
 import entidade.Fornecedor;
 import entidade.ItensCompra;
 import entidade.Produto;
-import exception.ControlException;
 import exception.EntidadeException;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -19,32 +18,13 @@ public class CompraControl extends TemplateMethod{
     Connection con = conSing.getConexao();
     
     private List<ItensCompra> listaitens = new ArrayList<>();
-
-    public List<Produto> preenchelistaprodutos() throws ControlException {
-         List<Produto> listaprodutos = new ArrayList<>();
-        Produto p = new Produto();
-        try {
-            List<Produto> listap = p.lista(con);
-            if (listap != null) {
-                for (int i = 0; i < listap.size(); i++) {
-                    listaprodutos.add(listap.get(i));
-                }
-                return listaprodutos;
-            }
-        } catch (EntidadeException ex) {
-            throw new ControlException(ex.getMessage());
-        }
-        return listaprodutos;
-    }
     
     @Override
-    void inserirProdutos(List<Produto> listaprod, int qtd) {
-        for (int i = 0; i < listaprod.size(); i++) {
+    public void inserirProdutos(Produto prod, int qtd) {
             ItensCompra ic = new ItensCompra();
-            ic.setProd(listaprod.get(i));
+            ic.setProd(prod);
             ic.setQtde(qtd);
             listaitens.add(ic);
-        }
     }
     
     public int gravaCompra(int codigo, double valor, Date data, Fornecedor f){
@@ -54,12 +34,33 @@ public class CompraControl extends TemplateMethod{
         comp.setDataCompra(data);
         comp.setFornecedor(f);
         comp.setListaItens(listaitens);
-//        try{
-            //return comp.insert(con);
-//        }catch(SQLException ex){
-//            System.out.println(ex.getMessage());
-//        }
+        listaitens.clear();
+        try{
+            return comp.insert(con);
+        }catch(EntidadeException ex){
+            System.out.println(ex.getMessage());
+        }
         return 0;
+    }
+    
+    public double soma() throws EntidadeException {
+        double soma = 0;
+        for (int i = 0; i < listaitens.size(); i++) {
+           soma+=listaitens.get(i).getQtde()*listaitens.get(i).getProd().getPreco();
+        }
+        return soma;
+    }
+    
+    public Fornecedor selecionaFornecedor(String desc) throws EntidadeException{
+        Fornecedor f = new Fornecedor();
+        f = f.select(con);
+        return f;
+    }
+    
+    public Produto buscarP(String desc) throws EntidadeException{
+        Produto p = new Produto();
+        p = p.select(con);
+        return p;
     }
     
 }

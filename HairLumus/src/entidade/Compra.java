@@ -1,5 +1,9 @@
 package entidade;
 
+import DAO.CompraDAO;
+import exception.DAOException;
+import exception.EntidadeException;
+import java.sql.Connection;
 import java.util.Date;
 import java.util.List;
 
@@ -54,7 +58,13 @@ public class Compra {
         this.listaItens = listaItens;
     }
     
-    
+    public int insert(Connection con) throws EntidadeException{
+        try{
+            return new CompraDAO().insert(this,con);
+        }catch(DAOException ex){
+            throw new EntidadeException(ex.getMessage());
+        }
+    }
     
     
 }
